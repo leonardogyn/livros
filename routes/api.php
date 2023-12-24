@@ -20,3 +20,10 @@ Route::prefix('/autor')->group(function () {
     Route::put('/update', '\Modules\Autor\Controllers\AutorController@update')->name('updateAutor');
     Route::delete('/delete', '\Modules\Autor\Controllers\AutorController@delete')->name('deleteAutor');
 });
+
+Route::prefix('/assunto')->group(function () {
+    Route::get('/list', '\Modules\Assunto\Controllers\AssuntoController@list')->name('listAssunto');
+    Route::post('/create', '\Modules\Assunto\Controllers\AssuntoController@create')->name('createAssunto');
+    Route::put('/update', '\Modules\Assunto\Controllers\AssuntoController@update')->name('updateAssunto');
+    Route::delete('/delete', '\Modules\Assunto\Controllers\AssuntoController@delete')->name('deleteAssunto');
+});

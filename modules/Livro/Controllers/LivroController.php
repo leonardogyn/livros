@@ -1,29 +1,26 @@
 <?php
 
-namespace Modules\Autor\Controllers;
+namespace Modules\Livro\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use Modules\Autor\Request\AutorRequest;
-use Modules\Autor\Services\Interfaces\AutorServiceInterface;
+use Modules\Livro\Request\LivroRequest;
+use Modules\Livro\Services\Interfaces\LivroServiceInterface;
 use Exception;
 
-/**
- * @OA\Info(title="Livros", version="0.1")
- */
-class AutorController extends Controller
+class LivroController extends Controller
 {
     protected $service;
 
-    public function __construct(AutorServiceInterface $service)
+    public function __construct(LivroServiceInterface $service)
     {
         $this->service = $service;
     }
 
     /**
      * @OA\Get(
-     *     path="/api/autor/list",
-     *     tags={"Autor"},
+     *     path="/api/livro/list",
+     *     tags={"Livro"},
      *     summary="Listar os Registros",
      *     @OA\Response(response="200", description="Success"),
      *     @OA\Response(response="404", description="Not Found"),
@@ -43,14 +40,38 @@ class AutorController extends Controller
 
     /**
      * @OA\Post(
-     ** path="/api/autor/create",
-     *   tags={"Autor"},
+     ** path="/api/livro/create",
+     *   tags={"Livro"},
      *   summary="Criar Registro",
      *   @OA\Parameter(
-     *      name="Nome",
+     *      name="Titulo",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *      name="Editora",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *      name="Edicao",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="integer")
+     *   ),
+     *   @OA\Parameter(
+     *      name="AnoPublicacao",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *      name="Valor",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="number",format="decimal")
      *   ),
      *   @OA\Response(response=201,description="Created"),
      *   @OA\Response(response=404,description="Not found"),
@@ -58,7 +79,7 @@ class AutorController extends Controller
      *   @OA\MediaType(mediaType="application/json")
      *)
      **/
-    public function create(AutorRequest $request)
+    public function create(LivroRequest $request)
     {
         try {
             return $this->service->create($request->validated());
@@ -70,20 +91,44 @@ class AutorController extends Controller
 
     /**
      * @OA\Put(
-     ** path="/api/autor/update",
-     *   tags={"Autor"},
+     ** path="/api/livro/update",
+     *   tags={"Livro"},
      *   summary="Atualizar Registro",
      *   @OA\Parameter(
-     *      name="CodAu",
+     *      name="Codl",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="integer")
      *   ),
      *   @OA\Parameter(
-     *      name="Nome",
+     *      name="Titulo",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *      name="Editora",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *      name="Edicao",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="integer")
+     *   ),
+     *   @OA\Parameter(
+     *      name="AnoPublicacao",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="string")
+     *   ),
+     *   @OA\Parameter(
+     *      name="Valor",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(type="number",format="decimal")
      *   ),
      *   @OA\Response(response=200,description="Updated"),
      *   @OA\Response(response=404,description="Not found"),
@@ -91,7 +136,7 @@ class AutorController extends Controller
      *   @OA\MediaType(mediaType="application/json")
      *)
      **/
-    public function update(AutorRequest $request)
+    public function update(LivroRequest $request)
     {
         try {
             if($this->service->update($request->validated())) {
@@ -105,11 +150,11 @@ class AutorController extends Controller
 
     /**
      * @OA\Delete(
-     ** path="/api/autor/delete",
-     *   tags={"Autor"},
+     ** path="/api/livro/delete",
+     *   tags={"Livro"},
      *   summary="Excluir Registro",
      *   @OA\Parameter(
-     *      name="CodAu",
+     *      name="Codl",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="integer")
@@ -120,7 +165,7 @@ class AutorController extends Controller
      *   @OA\MediaType(mediaType="application/json")
      *)
      **/
-    public function delete(AutorRequest $request)
+    public function delete(LivroRequest $request)
     {
         try {
             if($this->service->delete($request->validated())) {

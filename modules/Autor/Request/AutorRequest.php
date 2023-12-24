@@ -48,7 +48,7 @@ class AutorRequest extends FormRequest
 
         // Regras de criação e edição
         $rules_default = [
-            'nome' => [
+            'Nome' => [
                 'required',
                 'max:40',
             ],
@@ -61,10 +61,10 @@ class AutorRequest extends FormRequest
         // update
         elseif ($this->route()->getActionMethod() == 'update') {
             $rules_update = [
-                'codau' => [
+                'CodAu' => [
                     'required',
-                    'unique:autor,codau,' . $this->codau . ',codau',
-                    'max:36'
+                    'unique:Autor,CodAu,' . $this->CodAu . ',CodAu',
+                    'max:11'
                 ],
             ];
 
@@ -74,7 +74,7 @@ class AutorRequest extends FormRequest
         elseif ($this->route()->getActionMethod() == 'delete') {
             // Regras de exclusão
             $rules_destroy = [
-                'codau' => new ExcludeAutorRule(),
+                'CodAu' => new ExcludeAutorRule(),
             ];
 
             return $rules_destroy;
@@ -102,8 +102,8 @@ class AutorRequest extends FormRequest
     public function attributes()
     {
         $result = [
-            'codau'             => 'Identificador',
-            'nome'              => 'Nome'
+            'CodAu'             => 'Identificador',
+            'Nome'              => 'Nome'
         ];
 
         return $result;
@@ -117,8 +117,8 @@ class AutorRequest extends FormRequest
     public function messages()
     {
         return [
-            'codau.required'            => 'O campo Identificador é obrigatório',
-            'nome.required'             => 'O campo Nome é obrigatório',
+            'CodAu.required'            => 'O campo Identificador é obrigatório',
+            'Nome.required'             => 'O campo Nome é obrigatório',
         ];
     }
 }

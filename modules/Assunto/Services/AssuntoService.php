@@ -27,20 +27,20 @@ class AssuntoService implements AssuntoServiceInterface
 
     public function create(array $assunto)
     {
-        $assunto['descricao'] = $assunto['descricao'];
+        $assunto['Descricao'] = $assunto['Descricao'];
         return $this->assuntoRepository->create($assunto);
     }
 
     public function update(array $assunto)
     {
-        $update = $this->find($assunto['codas']);
-        $update['descricao'] = $assunto['descricao'];
+        $update = $this->find($assunto['CodAs']);
+        $update['Descricao'] = $assunto['Descricao'];
         return $this->assuntoRepository->update($update);
     }
 
     public function delete($assunto)
     {
-        $delete = $this->find($assunto['codas']);
+        $delete = $this->find($assunto['CodAs']);
         return $this->assuntoRepository->delete($delete);
     }
 }

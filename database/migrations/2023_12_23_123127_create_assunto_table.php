@@ -13,9 +13,9 @@ class CreateAssuntoTable extends Migration
      */
     public function up()
     {
-        Schema::create('assunto', function (Blueprint $table) {
-            $table->bigIncrements('codas');
-            $table->string('descricao', 20);
+        Schema::create('Assunto', function (Blueprint $table) {
+            $table->bigIncrements('CodAs');
+            $table->string('Descricao', 20);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateAssuntoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assunto');
+        Schema::dropIfExists('Assunto');
     }
 }

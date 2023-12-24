@@ -17,7 +17,7 @@ class AssuntoUnitTest extends TestCase
         $assunto = new Assunto();
 
         $expected = [
-            'descricao'
+            'Descricao'
         ];
 
         $arrayCompared = array_diff($expected, $assunto->getFillable());

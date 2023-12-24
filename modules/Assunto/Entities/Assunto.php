@@ -8,10 +8,10 @@ class Assunto extends Model
 {
     public $incrementing = true;
 
-    protected $table        = 'assunto';
-    protected $primaryKey   = 'codas';
+    protected $table        = 'Assunto';
+    protected $primaryKey   = 'CodAs';
     public $fillable = [
-        'descricao'
+        'Descricao'
     ];
 
     public $timestamps = false;

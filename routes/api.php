@@ -27,3 +27,10 @@ Route::prefix('/assunto')->group(function () {
     Route::put('/update', '\Modules\Assunto\Controllers\AssuntoController@update')->name('updateAssunto');
     Route::delete('/delete', '\Modules\Assunto\Controllers\AssuntoController@delete')->name('deleteAssunto');
 });
+
+Route::prefix('/livro')->group(function () {
+    Route::get('/list', '\Modules\Livro\Controllers\LivroController@list')->name('listLivro');
+    Route::post('/create', '\Modules\Livro\Controllers\LivroController@create')->name('createLivro');
+    Route::put('/update', '\Modules\Livro\Controllers\LivroController@update')->name('updateLivro');
+    Route::delete('/delete', '\Modules\Livro\Controllers\LivroController@delete')->name('deleteLivro');
+});

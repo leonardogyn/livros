@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Assunto\Request;
+namespace Modules\Livro\Request;
 
-use Modules\Assunto\Rule\ExcludeAssuntoRule;
+use Modules\Livro\Rule\ExcludeLivroRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\Assunto\Services\Interfaces\AssuntoServiceInterface;
+use Modules\Livro\Services\Interfaces\LivroServiceInterface;
 
-class AssuntoRequest extends FormRequest
+class LivroRequest extends FormRequest
 {
     protected $service;
 
@@ -15,7 +15,7 @@ class AssuntoRequest extends FormRequest
      *
      * @return void
      */
-    public function __construct(AssuntoServiceInterface $service)
+    public function __construct(LivroServiceInterface $service)
     {
         $this->service = $service;
     }
@@ -48,9 +48,26 @@ class AssuntoRequest extends FormRequest
 
         // Regras de criação e edição
         $rules_default = [
-            'Descricao' => [
+            'Titulo' => [
                 'required',
-                'max:20',
+                'max:40',
+            ],
+            'Editora' => [
+                'required',
+                'max:40',
+            ],
+            'Edicao' => [
+                'required',
+                'max:11',
+            ],
+            'AnoPublicacao' => [
+                'required',
+                'max:4',
+            ],
+            'Valor' => [
+                'required',
+                'numeric',
+                'min:0',
             ],
         ];
 
@@ -61,9 +78,9 @@ class AssuntoRequest extends FormRequest
         // update
         elseif ($this->route()->getActionMethod() == 'update') {
             $rules_update = [
-                'CodAs' => [
+                'Codl' => [
                     'required',
-                    'unique:Assunto,CodAs,' . $this->CodAs . ',CodAs',
+                    'unique:Livro,Codl,' . $this->Codl . ',Codl',
                     'max:11'
                 ],
             ];
@@ -74,7 +91,7 @@ class AssuntoRequest extends FormRequest
         elseif ($this->route()->getActionMethod() == 'delete') {
             // Regras de exclusão
             $rules_destroy = [
-                'CodAs' => new ExcludeAssuntoRule(),
+                'Codl' => new ExcludeLivroRule(),
             ];
 
             return $rules_destroy;
@@ -102,8 +119,12 @@ class AssuntoRequest extends FormRequest
     public function attributes()
     {
         $result = [
-            'CodAs'             => 'Identificador',
-            'Descricao'         => 'Descrição'
+            'Codl'             => 'Identificador',
+            'Titulo'           => 'Título',
+            'Editora'          => 'Editora',
+            'Edicao'           => 'Edicao',
+            'AnoPublicacao'    => 'AnoPublicacao',
+            'Valor'            => 'Valor',
         ];
 
         return $result;
@@ -117,8 +138,12 @@ class AssuntoRequest extends FormRequest
     public function messages()
     {
         return [
-            'CodAs.required'            => 'O campo Identificador é obrigatório',
-            'Descricao.required'        => 'O campo Descrição é obrigatório',
+            'Codl.required'            => 'O campo Identificador é obrigatório',
+            'Titulo.required'          => 'O campo Título é obrigatório',
+            'Editora.required'         => 'O campo Editora é obrigatório',
+            'Edicao.required'          => 'O campo Edição é obrigatório',
+            'AnoPublicacao.required'   => 'O campo Ano de Publicação é obrigatório',
+            'Valor.required'           => 'O campo Valor é obrigatório',
         ];
     }
 }

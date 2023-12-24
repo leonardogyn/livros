@@ -13,12 +13,13 @@ class CreateLivroTable extends Migration
      */
     public function up()
     {
-        Schema::create('livro', function (Blueprint $table) {
-            $table->bigIncrements('codl');
-            $table->string('titulo', 40);
-            $table->string('editora', 40);
-            $table->integer('edicao');
-            $table->string('ano_publicacao', 4);
+        Schema::create('Livro', function (Blueprint $table) {
+            $table->bigIncrements('Codl');
+            $table->string('Titulo', 40);
+            $table->string('Editora', 40);
+            $table->integer('Edicao');
+            $table->string('AnoPublicacao', 4);
+            $table->double('Valor', 8, 2);
         });
     }
 
@@ -29,6 +30,6 @@ class CreateLivroTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('livro');
+        Schema::dropIfExists('Livro');
     }
 }

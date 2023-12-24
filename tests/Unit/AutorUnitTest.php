@@ -17,7 +17,7 @@ class AutorUnitTest extends TestCase
         $autor = new Autor();
 
         $expected = [
-            'nome'
+            'Nome'
         ];
 
         $arrayCompared = array_diff($expected, $autor->getFillable());

@@ -27,20 +27,20 @@ class AutorService implements AutorServiceInterface
 
     public function create(array $autor)
     {
-        $autor['nome'] = $autor['nome'];
+        $autor['Nome'] = $autor['Nome'];
         return $this->autorRepository->create($autor);
     }
 
     public function update(array $autor)
     {
-        $update = $this->find($autor['codau']);
-        $update['nome'] = $autor['nome'];
+        $update = $this->find($autor['CodAu']);
+        $update['Nome'] = $autor['Nome'];
         return $this->autorRepository->update($update);
     }
 
     public function delete($autor)
     {
-        $delete = $this->find($autor['codau']);
+        $delete = $this->find($autor['CodAu']);
         return $this->autorRepository->delete($delete);
     }
 }

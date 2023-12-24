@@ -13,12 +13,12 @@ class CreateLivroAssuntoTable extends Migration
      */
     public function up()
     {
-        Schema::create('livro_assunto', function (Blueprint $table) {
-            $table->unsignedBigInteger('livro_codl');
-            $table->unsignedBigInteger('assunto_codas');
+        Schema::create('Livro_Assunto', function (Blueprint $table) {
+            $table->unsignedBigInteger('Livro_Codl');
+            $table->unsignedBigInteger('Assunto_CodAs');
 
-            $table->foreign('livro_codl','livro_assunto_fkindex1')->references('codl')->on('livro');
-            $table->foreign('assunto_codas','livro_assunto_fkindex2')->references('codas')->on('assunto');
+            $table->foreign('Livro_Codl','Livro_Assunto_FKIndex1')->references('Codl')->on('Livro');
+            $table->foreign('Assunto_CodAs','Livro_Assunto_FKIndex2')->references('CodAs')->on('Assunto');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateLivroAssuntoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('livro_assunto');
+        Schema::dropIfExists('Livro_Assunto');
     }
 }

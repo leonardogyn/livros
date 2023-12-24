@@ -8,10 +8,10 @@ class Autor extends Model
 {
     public $incrementing = true;
 
-    protected $table        = 'autor';
-    protected $primaryKey   = 'codau';
+    protected $table        = 'Autor';
+    protected $primaryKey   = 'CodAu';
     public $fillable = [
-        'nome'
+        'Nome'
     ];
 
     public $timestamps = false;

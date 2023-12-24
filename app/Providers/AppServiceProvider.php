@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
         // Assunto
         $this->app->bind(\Modules\Assunto\Repositories\Interfaces\AssuntoRepositoryInterface::class, \Modules\Assunto\Repositories\AssuntoRepository::class);
         $this->app->bind(\Modules\Assunto\Services\Interfaces\AssuntoServiceInterface::class, \Modules\Assunto\Services\AssuntoService::class);
+
+        // Livro
+        $this->app->bind(\Modules\Livro\Repositories\Interfaces\LivroRepositoryInterface::class, \Modules\Livro\Repositories\LivroRepository::class);
+        $this->app->bind(\Modules\Livro\Services\Interfaces\LivroServiceInterface::class, \Modules\Livro\Services\LivroService::class);
     }
 
     /**

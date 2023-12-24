@@ -13,12 +13,12 @@ class CreateLivroAutorTable extends Migration
      */
     public function up()
     {
-        Schema::create('livro_autor', function (Blueprint $table) {
-            $table->unsignedBigInteger('livro_codl');
-            $table->unsignedBigInteger('autor_codau');
+        Schema::create('Livro_Autor', function (Blueprint $table) {
+            $table->unsignedBigInteger('Livro_Codl');
+            $table->unsignedBigInteger('Autor_Codau');
 
-            $table->foreign('livro_codl','livro_autor_fkindex1')->references('codl')->on('livro');
-            $table->foreign('autor_codau','livro_autor_fkindex2')->references('codau')->on('autor');
+            $table->foreign('Livro_Codl','Livro_Autor_FKIndex1')->references('Codl')->on('Livro');
+            $table->foreign('Autor_CodAu','Livro_Autor_FKIndex2')->references('CodAu')->on('Autor');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateLivroAutorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('livro_autor');
+        Schema::dropIfExists('Livro_Autor');
     }
 }

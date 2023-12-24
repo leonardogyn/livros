@@ -44,7 +44,7 @@ class AssuntoController extends Controller
      *   tags={"Assunto"},
      *   summary="Criar Registro",
      *   @OA\Parameter(
-     *      name="descricao",
+     *      name="Descricao",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="string")
@@ -71,13 +71,13 @@ class AssuntoController extends Controller
      *   tags={"Assunto"},
      *   summary="Atualizar Registro",
      *   @OA\Parameter(
-     *      name="codas",
+     *      name="CodAs",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="integer")
      *   ),
      *   @OA\Parameter(
-     *      name="descricao",
+     *      name="Descricao",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="string")
@@ -106,7 +106,7 @@ class AssuntoController extends Controller
      *   tags={"Assunto"},
      *   summary="Excluir Registro",
      *   @OA\Parameter(
-     *      name="codas",
+     *      name="CodAs",
      *      in="query",
      *      required=true,
      *      @OA\Schema(type="integer")

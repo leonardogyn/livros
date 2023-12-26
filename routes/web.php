@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::view('/', 'welcome');
+
+Route::prefix('/autor')->group(function () {
+    Route::get('/', '\Modules\Autor\Controllers\AutorController@index')->name('indexAutor');
+    Route::view('/cadastrar', 'autor/manter')->name('cadastrarAutor');
+    Route::get('/editar/{CodAu?}','\Modules\Autor\Controllers\AutorController@edit')->name('editarAutor');
+});
+
+Route::prefix('/assunto')->group(function () {
+    Route::get('/', '\Modules\Assunto\Controllers\AssuntoController@index')->name('indexAssunto');
+    Route::view('/cadastrar', 'assunto/manter')->name('cadastrarAssunto');
+    Route::get('/editar/{CodAs?}','\Modules\Assunto\Controllers\AssuntoController@edit')->name('editarAssunto');
+});
+
+Route::prefix('/livro')->group(function () {
+    Route::get('/', '\Modules\Livro\Controllers\LivroController@index')->name('indexLivro');
+    Route::view('/cadastrar', 'livro/manter')->name('cadastrarLivro');
+    Route::get('/editar/{Codl?}','\Modules\Livro\Controllers\LivroController@edit')->name('editarLivro');
+});

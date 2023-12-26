@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Modules\Autor\Request\AutorRequest;
 use Modules\Autor\Services\Interfaces\AutorServiceInterface;
 use Exception;
+use Modules\Autor\Entities\Autor;
 
 /**
  * @OA\Info(title="Livros", version="0.1")
@@ -18,6 +19,60 @@ class AutorController extends Controller
     public function __construct(AutorServiceInterface $service)
     {
         $this->service = $service;
+    }
+
+    /**
+     * Listagem dos dados para WEB
+     */
+    public function index()
+    {
+        try {
+            $autores = $this->service->list();
+            return view('autor.listar', compact('autores'));
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
+    }
+
+    /**
+     * Edição dos dados para WEB
+     */
+    public function edit($CodAu = null)
+    {
+        try {
+
+            // Verifica se código foi informado.
+            if (empty($CodAu)) {
+                // Redireciona usuário para tela de consulta.
+                return redirect()->route('autor')
+                    ->with('class', 'alert-warning')
+                    ->with('message', 'Código do Autor não foi informado.');
+            }
+
+            $autor = $this->service->find($CodAu);
+
+            // Verifica se objeto foi encontrado.
+            if (empty($autor)) {
+                // Redireciona usuário para tela de consulta.
+                return redirect()->route('autor')
+                    ->with('class', 'alert-warning')
+                    ->with('message', 'Autor não encontrado.');
+            } else {
+                // Monta retorno de campos para a tela.
+                $dados = array(
+                    'title_page'    => 'Editar Autor',
+                    'autor'         => $autor,
+                    'MANTER'        => 'Atualizar'
+                );
+
+                // Retorna para a página de edição.
+                return view('autor/manter', $dados);
+            }
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
     }
 
     /**

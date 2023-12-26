@@ -10,6 +10,10 @@ docker-compose up -d
 
 docker-compose exec php-fpm composer install
 
+## Instalar os pacotes do npm
+
+docker-compose exec php-fpm npm install
+
 ## Limpar o cache do Laravel
 
 docker-compose exec php-fpm php artisan optimize

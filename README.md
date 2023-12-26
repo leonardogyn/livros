@@ -16,12 +16,12 @@ docker-compose exec php-fpm npm install
 
 ## Limpar o cache do Laravel
 
+docker-compose exec php-fpm php artisan config:clear
 docker-compose exec php-fpm php artisan optimize
 
 ## Gerar as tabelas no banco de dados
 
 docker-compose exec php-fpm php artisan migrate
-
 
 ## Teste de código
 

@@ -314,17 +314,17 @@ return [
         ],
         [
             'text'        => 'Livro',
-            'url'         => 'livro/index',
+            'url'         => 'livro/',
             'icon'        => 'fa fa-fw fa-book',
         ],
         [
             'text'        => 'Assunto',
-            'url'         => 'assunto/index',
+            'url'         => 'assunto/',
             'icon'        => 'fa fa-fw fa-comment',
         ],
         [
             'text'        => 'Autor',
-            'url'         => 'autor/index',
+            'url'         => 'autor/',
             'icon'        => 'fa fa-fw fa-address-book',
         ],
     ],

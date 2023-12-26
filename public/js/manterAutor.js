@@ -110,7 +110,7 @@ $(function () {
       data: $("form").serialize()
     }).done(function (resposta) {
       if (resposta.Nome != "") {
-        toastr.success('Registro efetuado com sucesso!', 'Autor', {
+        toastr.success('Registro efetuado com sucesso!', 'Autor - ' + manter, {
           timeOut: 6000
         });
         $("#Nome").val("");

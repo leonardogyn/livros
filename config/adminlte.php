@@ -308,11 +308,6 @@ return [
             'icon'        => 'fa fa-fw fa-home',
         ],
         [
-            'text'        => 'Dashboard',
-            'url'         => 'dashboard/',
-            'icon'        => 'fa fa-fw fa-star',
-        ],
-        [
             'text'        => 'Livro',
             'url'         => 'livro/',
             'icon'        => 'fa fa-fw fa-book',
@@ -326,6 +321,11 @@ return [
             'text'        => 'Autor',
             'url'         => 'autor/',
             'icon'        => 'fa fa-fw fa-address-book',
+        ],
+        [
+            'text'        => 'Relatório',
+            'url'         => 'relatorio/',
+            'icon'        => 'fa fa-fw fa-star',
         ],
     ],
 

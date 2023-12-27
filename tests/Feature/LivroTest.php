@@ -22,15 +22,13 @@ class LivroTest extends TestCase
      */
     public function testShouldCreateLivro()
     {
-
-        /*
         $livro = factory($this->service)->make();
 
         $response = $this->postJson(route('createLivro'),$livro->toArray());
 
         $response->assertCreated();
         $response->assertStatus(201);
-    */
+
         $this->assertTrue(true);
     }
 }

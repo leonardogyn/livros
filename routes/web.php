@@ -32,3 +32,7 @@ Route::prefix('/livro')->group(function () {
     Route::get('/register', '\Modules\Livro\Controllers\LivroController@register')->name('cadastrarLivro');
     Route::get('/editar/{Codl?}','\Modules\Livro\Controllers\LivroController@edit')->name('editarLivro');
 });
+
+Route::prefix('/relatorio')->group(function () {
+    Route::get('/', '\Modules\relatorio\Controllers\RelatorioController@index')->name('indexRelatorio');
+});

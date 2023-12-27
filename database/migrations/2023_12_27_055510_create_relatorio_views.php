@@ -14,7 +14,7 @@ class CreateRelatorioViews extends Migration
      */
     public function up()
     {
-        /*
+        DB::statement("DROP VIEW IF EXISTS relatorioView");
         DB::statement("CREATE VIEW relatorioView AS
                         SELECT
                             A.Nome AS autor,
@@ -28,7 +28,7 @@ class CreateRelatorioViews extends Migration
                             JOIN Assunto S ON LS.Assunto_CodAs = S.CodAs
                         GROUP BY
                             A.CodAu, L.Titulo");
-        */
+
     }
 
     /**

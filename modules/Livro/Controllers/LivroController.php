@@ -47,11 +47,14 @@ class LivroController extends Controller
         try {
             $autores = $this->serviceAutor->list();
 
+            $assuntos = $this->serviceAssunto->list();
+
             // Monta retorno de campos para a tela.
             $dados = array(
                 'title_page'        => 'Cadastrar Livro',
                 'livro'             => null,
                 'autores'           => $autores,
+                'assuntos'          => $assuntos,
                 'listAutores'       => [],
                 'listAssuntos'      => [],
                 'MANTER'            => 'Cadastrar'

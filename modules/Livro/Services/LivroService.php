@@ -34,6 +34,7 @@ class LivroService implements LivroServiceInterface
         $livro['AnoPublicacao'] = $livro['AnoPublicacao'];
         $livro['Valor'] = $livro['Valor'];
 
+        DB::beginTransaction();
         $objLivro = $this->livroRepository->create($livro);
 
         $auxLivro = $this->find($objLivro->Codl,['with' => ['autores','assuntos']]);
@@ -41,7 +42,7 @@ class LivroService implements LivroServiceInterface
         $auxLivro->autores()->attach($livro['Autores']);
 
         $auxLivro->assuntos()->attach($livro['Assuntos']);
-
+        DB::commit();
         return $objLivro;
     }
 

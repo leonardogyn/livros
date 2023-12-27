@@ -92,10 +92,10 @@
                                 <hr>
                                 <label class="text-input">Autor *</label>
                             </div>
-                            <div class="form-group row col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="form-group row col-sm-12 col-md-12 col-lg-12 col-xl-12 ml-1">
                                 @if (!empty($autores))
                                     @foreach ($autores as $autor)
-                                    <div class="ml-2 col-sm-6 col-md-4 col-lg-4 col-xl-4 form-check">
+                                    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 form-check">
                                         <input type="checkbox" class="form-check-input" name="Autores[]" id="autor{{ $autor->CodAu }}" value="{{ $autor->CodAu }}" {{ in_array($autor->CodAu,$listAutores)  ? ' checked ' : '' }}>
                                         <label class="form-check-label" for="autor{{ $autor->CodAu }}">{{ $autor->Nome }}</label>
                                     </div>
@@ -112,10 +112,10 @@
                                 <hr>
                                 <label class="text-input">Assunto *</label>
                             </div>
-                            <div class="form-group row col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="form-group row col-sm-12 col-md-12 col-lg-12 col-xl-12 ml-1">
                                 @if (!empty($assuntos))
                                     @foreach ($assuntos as $assunto)
-                                    <div class="ml-2 col-sm-6 col-md-4 col-lg-4 col-xl-4 form-check">
+                                    <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 form-check">
                                         <input type="checkbox" class="form-check-input" name="Assuntos[]" id="assunto{{ $assunto->CodAs }}" value="{{ $assunto->CodAs }}" {{ in_array($assunto->CodAs,$listAssuntos)  ? ' checked ' : '' }}>
                                         <label class="form-check-label" for="assunto{{ $assunto->CodAs }}">{{ $assunto->Descricao }}</label>
                                     </div>

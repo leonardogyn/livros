@@ -29,6 +29,6 @@ Route::prefix('/assunto')->group(function () {
 
 Route::prefix('/livro')->group(function () {
     Route::get('/', '\Modules\Livro\Controllers\LivroController@index')->name('indexLivro');
-    Route::view('/cadastrar', 'livro/manter')->name('cadastrarLivro');
+    Route::get('/register', '\Modules\Livro\Controllers\LivroController@register')->name('cadastrarLivro');
     Route::get('/editar/{Codl?}','\Modules\Livro\Controllers\LivroController@edit')->name('editarLivro');
 });

@@ -27,10 +27,10 @@ class BaseRepository implements BaseRepositoryInterface
                     $query->with($param['with']);
                 }
             }
-            return $query->findOrFail($value);
+            return $query->find($value);
         } catch (\Exception $exception) {
             report($exception);
-            throw $exception;
+            throw new \Exception($exception->getMessage());
         }
     }
 

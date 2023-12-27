@@ -64,6 +64,7 @@ class AssuntoRequest extends FormRequest
                 'CodAs' => [
                     'required',
                     'unique:Assunto,CodAs,' . $this->CodAs . ',CodAs',
+                    'exists:Assunto,CodAs',
                     'max:11'
                 ],
             ];
@@ -118,6 +119,7 @@ class AssuntoRequest extends FormRequest
     {
         return [
             'CodAs.required'            => 'O campo Identificador é obrigatório',
+            'CodAs.exists'            => 'O Identificador não foi encontrado',
             'Descricao.required'        => 'O campo Descrição é obrigatório',
         ];
     }

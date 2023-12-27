@@ -81,84 +81,57 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/autor/manterAutor.js":
+/***/ "./resources/js/livro/listarLivro.js":
 /*!*******************************************!*\
-  !*** ./resources/js/autor/manterAutor.js ***!
+  !*** ./resources/js/livro/listarLivro.js ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  $('form').on('submit', function (e) {
+  $('.excluir').on('click', function (e) {
     e.preventDefault();
-    $(".validarErro").removeClass("is-invalid");
-    $(".invalid-feedback").text("");
-    $(".invalid-feedback").hide();
     $("#spinnerLoading").show();
-    var manter = $("#manter").val();
-    if (manter == 'Atualizar') {
-      var url = "/api/autor/update";
-      var type = "PUT";
-    } else {
-      var url = "/api/autor/create";
-      var type = "POST";
-    }
-    $.ajax({
-      url: url,
-      type: type,
-      data: $("form").serialize()
-    }).done(function (resposta) {
-      if (resposta.Nome != "") {
-        toastr.success('Registro efetuado com sucesso!', manter + ' Autor', {
-          timeOut: 6000
-        });
-        if (manter != 'Atualizar') {
-          $("#Nome").val("");
+    if (confirm("Deseja realmente excluir este registro?")) {
+      $.ajax({
+        url: "/api/livro/delete",
+        type: "DELETE",
+        data: {
+          Codl: $(this).attr('cod')
         }
-        $(".validarErro").removeClass("is-invalid");
-        $(".invalid-feedback").text("");
-        $(".invalid-feedback").hide();
-      }
-      $("#spinnerLoading").hide();
-    }).fail(function (xhr, textStatus) {
-      if (textStatus == 'error') {
-        var json = $.parseJSON(xhr.responseText);
-        var result = json.error.message;
-        var msg = [];
-        $.each(result, function (index, value) {
-          if (index == 'CodAu') {
-            msg.push(value[0]);
-          } else {
-            $("#" + index).addClass("is-invalid");
-            $("#" + index + "-error").text(value[0]);
-            $("#" + index + "-error").show();
-            msg.push(value[0]);
-          }
-        });
-        toastr.error('Erro ao tentar ' + manter + ':<br>' + msg.join("<br>"), manter + ' Autor', {
+      }).done(function (resposta) {
+        toastr.success('Registro Excluído com sucesso!', 'Excluir Livro', {
           timeOut: 6000
         });
-      }
-      $("#spinnerLoading").hide();
-    });
+        setTimeout(window.location.href = "/livro/", 2000);
+        $("#spinnerLoading").hide();
+      }).fail(function (xhr, textStatus) {
+        if (textStatus == 'error') {
+          toastr.error('Erro ao tentar Excluir', 'Excluir Livro', {
+            timeOut: 6000
+          });
+        }
+        $("#spinnerLoading").hide();
+      });
+    }
   });
 });
 
 /***/ }),
 
-/***/ 4:
+/***/ 7:
 /*!*************************************************!*\
-  !*** multi ./resources/js/autor/manterAutor.js ***!
+  !*** multi ./resources/js/livro/listarLivro.js ***!
   \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/js/autor/manterAutor.js */"./resources/js/autor/manterAutor.js");
+module.exports = __webpack_require__(/*! /var/www/html/resources/js/livro/listarLivro.js */"./resources/js/livro/listarLivro.js");
 
 
 /***/ })

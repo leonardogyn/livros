@@ -64,6 +64,7 @@ class AutorRequest extends FormRequest
                 'CodAu' => [
                     'required',
                     'unique:Autor,CodAu,' . $this->CodAu . ',CodAu',
+                    'exists:Autor,CodAu',
                     'max:11'
                 ],
             ];
@@ -118,6 +119,7 @@ class AutorRequest extends FormRequest
     {
         return [
             'CodAu.required'            => 'O campo Identificador é obrigatório',
+            'CodAu.exists'              => 'O Identificador não foi encontrado',
             'Nome.required'             => 'O campo Nome é obrigatório',
         ];
     }

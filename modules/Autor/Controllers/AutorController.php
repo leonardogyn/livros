@@ -45,7 +45,7 @@ class AutorController extends Controller
             // Verifica se código foi informado.
             if (empty($CodAu)) {
                 // Redireciona usuário para tela de consulta.
-                return redirect()->route('autor')
+                return redirect()->route('indexAutor')
                     ->with('class', 'alert-warning')
                     ->with('message', 'Código do Autor não foi informado.');
             }
@@ -55,13 +55,13 @@ class AutorController extends Controller
             // Verifica se objeto foi encontrado.
             if (empty($autor)) {
                 // Redireciona usuário para tela de consulta.
-                return redirect()->route('autor')
+                return redirect()->route('indexAutor')
                     ->with('class', 'alert-warning')
                     ->with('message', 'Autor não encontrado.');
             } else {
                 // Monta retorno de campos para a tela.
                 $dados = array(
-                    'title_page'    => 'Editar Autor',
+                    'title_page'    => 'Atualizar Autor',
                     'autor'         => $autor,
                     'MANTER'        => 'Atualizar'
                 );
@@ -154,7 +154,7 @@ class AutorController extends Controller
             }
         } catch (Exception $ex) {
             report($ex);
-            return response()->json(['message' => 'Falha ao efetuar a edição'], 500);
+            return response()->json(['message' => 'Falha ao efetuar a Atualização'], 500);
         }
     }
 

@@ -3,14 +3,14 @@
 @section('title')
 
 @section('content_header')
-    <h3 class="m-0"><i class="fa fa-fw fa-address-book" aria-hidden="true"></i> {{ $title_page ?? 'Cadastrar Autor' }} </h3>
+    <h3 class="m-0"><i class="fa fa-fw fa-comment" aria-hidden="true"></i> {{ $title_page ?? 'Cadastrar Assunto' }} </h3>
 
     @push('css')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @endpush
 
     @push('js')
-        <script src="{{ asset('js/manterAutor.js') }}"></script>
+        <script src="{{ asset('js/manterAssunto.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @endpush
 @stop
@@ -24,27 +24,27 @@
 
     <form action="#" method="post" class="needs-validation" novalidate>
         <div class="row">
-            <!-- AUTOR -->
+            <!-- Assunto -->
             <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card box-shadow">
                     <div class="card-header border-0 no-bg-color">
-                        <h5 class="card-subtitle mt-1">Dados do Autor</h5>
+                        <h5 class="card-subtitle mt-1">Dados do Assunto</h5>
                     </div>
 
                     <div class="card-body">
                         <div class="row">
-                            <input type="hidden" name="CodAu" value="{{ $autor->CodAu ?? null }}" />
+                            <input type="hidden" name="CodAs" value="{{ $assunto->CodAs ?? null }}" />
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <input type="hidden" name="manter" id="manter" value="{{ $MANTER ?? 'Salvar' }}" />
 
-                            <!-- Nome -->
+                            <!-- Descricao -->
                             <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <label class="text-input">Nome *</label>
-                                <input id="Nome" name="Nome" type="text" class="form-control validarErro" value="{{ old('Nome', $autor->Nome ?? null) }}" maxlength="40" autocomplete="off" required>
+                                <label class="text-input">Descricao *</label>
+                                <input id="Descricao" name="Descricao" type="text" class="form-control validarErro" value="{{ old('Descricao', $assunto->Descricao ?? null) }}" maxlength="20" autocomplete="off" required>
 
                                 <div class="invalid-feedback"></div>
 
-                                <label id="Nome-error" class='text-danger invalid-feedback' style="display: none"></label>
+                                <label id="Descricao-error" class='text-danger invalid-feedback' style="display: none"></label>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             {{ $MANTER ?? 'Cadastrar' }}
                         </button>
 
-                        <button type="button" onclick=location.href="{{ route('indexAutor') }}" class="btn btn-secondary mr-3 mb-5 float-left">
+                        <button type="button" onclick=location.href="{{ route('indexAssunto') }}" class="btn btn-secondary mr-3 mb-5 float-left">
                             <i class="fa fa-step-backward" aria-hidden="true"></i> Voltar
                         </button>
                     </div>

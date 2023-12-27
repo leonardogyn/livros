@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/autor/manterAutor.js":
-/*!*******************************************!*\
-  !*** ./resources/js/autor/manterAutor.js ***!
-  \*******************************************/
+/***/ "./resources/js/assunto/manterAssunto.js":
+/*!***********************************************!*\
+  !*** ./resources/js/assunto/manterAssunto.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -102,10 +102,10 @@ $(function () {
     $("#spinnerLoading").show();
     var manter = $("#manter").val();
     if (manter == 'Atualizar') {
-      var url = "/api/autor/update";
+      var url = "/api/assunto/update";
       var type = "PUT";
     } else {
-      var url = "/api/autor/create";
+      var url = "/api/assunto/create";
       var type = "POST";
     }
     $.ajax({
@@ -113,12 +113,12 @@ $(function () {
       type: type,
       data: $("form").serialize()
     }).done(function (resposta) {
-      if (resposta.Nome != "") {
-        toastr.success('Registro efetuado com sucesso!', manter + ' Autor', {
+      if (resposta.Descricao != "") {
+        toastr.success('Registro efetuado com sucesso!', manter + ' Assunto', {
           timeOut: 6000
         });
         if (manter != 'Atualizar') {
-          $("#Nome").val("");
+          $("#Descricao").val("");
         }
         $(".validarErro").removeClass("is-invalid");
         $(".invalid-feedback").text("");
@@ -131,7 +131,7 @@ $(function () {
         var result = json.error.message;
         var msg = [];
         $.each(result, function (index, value) {
-          if (index == 'CodAu') {
+          if (index == 'CodAs') {
             msg.push(value[0]);
           } else {
             $("#" + index).addClass("is-invalid");
@@ -140,7 +140,7 @@ $(function () {
             msg.push(value[0]);
           }
         });
-        toastr.error('Erro ao tentar ' + manter + ':<br>' + msg.join("<br>"), manter + ' Autor', {
+        toastr.error('Erro ao tentar ' + manter + ':<br>' + msg.join("<br>"), manter + ' Assunto', {
           timeOut: 6000
         });
       }
@@ -151,14 +151,14 @@ $(function () {
 
 /***/ }),
 
-/***/ 4:
-/*!*************************************************!*\
-  !*** multi ./resources/js/autor/manterAutor.js ***!
-  \*************************************************/
+/***/ 6:
+/*!*****************************************************!*\
+  !*** multi ./resources/js/assunto/manterAssunto.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/js/autor/manterAutor.js */"./resources/js/autor/manterAutor.js");
+module.exports = __webpack_require__(/*! /var/www/html/resources/js/assunto/manterAssunto.js */"./resources/js/assunto/manterAssunto.js");
 
 
 /***/ })

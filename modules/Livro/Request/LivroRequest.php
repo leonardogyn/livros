@@ -33,7 +33,9 @@ class LivroRequest extends FormRequest
     public function prepareForValidation(): void
     {
         // Remove caracteres especiais dos campos, deixando somente números.
-        //$this['cpf_cnpj'] = preg_replace('/[^0-9]/', '', $this['cpf_cnpj']);
+        $value = str_replace('.','',$this['Valor']);
+        $value = str_replace(',','.',$value);
+        $this['Valor'] = $value;
     }
 
     /**
@@ -66,7 +68,12 @@ class LivroRequest extends FormRequest
             ],
             'Valor' => [
                 'required',
-                'numeric',
+                'min:0',
+            ],
+            'Autores' => [
+                'min:0',
+            ],
+            'Assuntos' => [
                 'min:0',
             ],
         ];
@@ -81,6 +88,7 @@ class LivroRequest extends FormRequest
                 'Codl' => [
                     'required',
                     'unique:Livro,Codl,' . $this->Codl . ',Codl',
+                    'exists:Livro,Codl',
                     'max:11'
                 ],
             ];
@@ -125,6 +133,7 @@ class LivroRequest extends FormRequest
             'Edicao'           => 'Edicao',
             'AnoPublicacao'    => 'AnoPublicacao',
             'Valor'            => 'Valor',
+            'Autores'          => 'Autores',
         ];
 
         return $result;
@@ -139,6 +148,7 @@ class LivroRequest extends FormRequest
     {
         return [
             'Codl.required'            => 'O campo Identificador é obrigatório',
+            'Codl.exists'              => 'O Identificador não foi encontrado',
             'Titulo.required'          => 'O campo Título é obrigatório',
             'Editora.required'         => 'O campo Editora é obrigatório',
             'Edicao.required'          => 'O campo Edição é obrigatório',

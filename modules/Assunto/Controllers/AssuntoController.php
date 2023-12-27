@@ -18,6 +18,60 @@ class AssuntoController extends Controller
     }
 
     /**
+     * Listagem dos dados para WEB
+     */
+    public function index()
+    {
+        try {
+            $assuntos = $this->service->list();
+            return view('assunto.listar', compact('assuntos'));
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
+    }
+
+    /**
+     * Edição dos dados para WEB
+     */
+    public function edit($CodAs = null)
+    {
+        try {
+
+            // Verifica se código foi informado.
+            if (empty($CodAs)) {
+                // Redireciona usuário para tela de consulta.
+                return redirect()->route('indexAssunto')
+                    ->with('class', 'alert-warning')
+                    ->with('message', 'Código do Assunto não foi informado.');
+            }
+
+            $assunto = $this->service->find($CodAs);
+
+            // Verifica se objeto foi encontrado.
+            if (empty($assunto)) {
+                // Redireciona usuário para tela de consulta.
+                return redirect()->route('indexAssunto')
+                    ->with('class', 'alert-warning')
+                    ->with('message', 'Assunto não encontrado.');
+            } else {
+                // Monta retorno de campos para a tela.
+                $dados = array(
+                    'title_page'    => 'Atualizar Assunto',
+                    'assunto'         => $assunto,
+                    'MANTER'        => 'Atualizar'
+                );
+
+                // Retorna para a página de edição.
+                return view('assunto/manter', $dados);
+            }
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
+    }
+
+    /**
      * @OA\Get(
      *     path="/api/assunto/list",
      *     tags={"Assunto"},

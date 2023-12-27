@@ -7,14 +7,121 @@ use App\Http\Controllers\Controller;
 use Modules\Livro\Request\LivroRequest;
 use Modules\Livro\Services\Interfaces\LivroServiceInterface;
 use Exception;
+use Modules\Assunto\Services\Interfaces\AssuntoServiceInterface;
+use Modules\Autor\Services\Interfaces\AutorServiceInterface;
 
 class LivroController extends Controller
 {
     protected $service;
+    protected $serviceAutor;
+    protected $serviceAssunto;
 
-    public function __construct(LivroServiceInterface $service)
+    public function __construct(LivroServiceInterface $service,
+                                AutorServiceInterface $serviceAutor,
+                                AssuntoServiceInterface $serviceAssunto)
     {
         $this->service = $service;
+        $this->serviceAutor = $serviceAutor;
+        $this->serviceAssunto = $serviceAssunto;
+    }
+
+    /**
+     * Listagem dos dados para WEB
+     */
+    public function index()
+    {
+        try {
+            $livros = $this->service->list();
+            return view('livro.listar', compact('livros'));
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
+    }
+
+    /**
+     * Cadastro dos dados para WEB
+     */
+    public function register()
+    {
+        try {
+            $autores = $this->serviceAutor->list();
+
+            // Monta retorno de campos para a tela.
+            $dados = array(
+                'title_page'        => 'Cadastrar Livro',
+                'livro'             => null,
+                'autores'           => $autores,
+                'listAutores'       => [],
+                'listAssuntos'      => [],
+                'MANTER'            => 'Cadastrar'
+            );
+
+            // Retorna para a página de edição.
+            return view('livro/manter', $dados);
+
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
+    }
+
+    /**
+     * Edição dos dados para WEB
+     */
+    public function edit($CodAl = null)
+    {
+        try {
+
+            // Verifica se código foi informado.
+            if (empty($CodAl)) {
+                // Redireciona usuário para tela de consulta.
+                return redirect()->route('indexLivro')
+                    ->with('class', 'alert-warning')
+                    ->with('message', 'Código do Livro não foi informado.');
+            }
+
+            $livro = $this->service->find($CodAl,['with' => 'autores']);
+
+            // Verifica se objeto foi encontrado.
+            if (empty($livro)) {
+                // Redireciona usuário para tela de consulta.
+                return redirect()->route('indexLivro')
+                    ->with('class', 'alert-warning')
+                    ->with('message', 'Livro não encontrado.');
+            } else {
+                // Monta retorno de campos para a tela.
+                $listAutores = [];
+                foreach($livro->autores as $autor){
+                    $listAutores[] = $autor->CodAu;
+                }
+
+                $listAssuntos = [];
+                foreach($livro->assuntos as $assunto){
+                    $listAssuntos[] = $assunto->CodAs;
+                }
+
+                $autores = $this->serviceAutor->list();
+
+                $assuntos = $this->serviceAssunto->list();
+
+                $dados = array(
+                    'title_page'        => 'Atualizar Livro',
+                    'livro'             => $livro,
+                    'autores'           => $autores,
+                    'assuntos'          => $assuntos,
+                    'listAutores'       => $listAutores,
+                    'listAssuntos'      => $listAssuntos,
+                    'MANTER'            => 'Atualizar'
+                );
+
+                // Retorna para a página de edição.
+                return view('livro/manter', $dados);
+            }
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a listagem Web'], 500);
+        }
     }
 
     /**

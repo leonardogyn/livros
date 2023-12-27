@@ -7,9 +7,9 @@
 
     <div class="row">
         <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h3 class="m-0" style="float:left"><i class="fa fa-fw fa-address-book"></i> Lista de Autores</h3>
+            <h3 class="m-0" style="float:left"><i class="fa fa-fw fa-book"></i> Lista de Livros</h3>
 
-            <a title="Adicionar" href="{{ route('cadastrarAutor') }}"  class="btn btn-primary float-right">
+            <a title="Adicionar" href="{{ route('cadastrarLivro') }}"  class="btn btn-primary float-right">
                 <i class="fa fa-plus"></i>
                 Adicionar
             </a>
@@ -21,7 +21,7 @@
     @endpush
 
     @push('js')
-        <script src="{{ asset('js/listarAutor.js') }}"></script>
+        <script src="{{ asset('js/listarLivro.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @endpush
 @stop
@@ -30,31 +30,39 @@
 
     @include('componentes.loading')
 
-    @if (!empty($autores) && count($autores) > 0)
+    @if (!empty($livros) && count($livros) > 0)
         <div class="card">
             <div class="card-body">
                 <table id="table" class="table table-striped">
                     <thead class="thead-light">
                         <tr class="text-secondary">
                             <th class="text-center" scope="col">Código</th>
-                            <th scope="col">Nome</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Editora</th>
+                            <th scope="col">Edição</th>
+                            <th scope="col">Ano Pub.</th>
+                            <th scope="col">Valor</th>
                             <th class="text-center" scope="col">Opções</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @if (!empty($autores))
-                            @foreach ($autores as $p)
+                        @if (!empty($livros))
+                            @foreach ($livros as $p)
                                 <tr>
-                                    <td class="text-center">{{ $p->CodAu }}</td>
-                                    <td>{{ $p->Nome }}</td>
+                                    <td class="text-center">{{ $p->Codl }}</td>
+                                    <td>{{ $p->Titulo }}</td>
+                                    <td>{{ $p->Editora }}</td>
+                                    <td>{{ $p->Edicao }}</td>
+                                    <td>{{ $p->AnoPublicacao }}</td>
+                                    <td>{{ number_format($p->Valor, 2, ',', '.') }}</td>
 
                                     <td class="text-center">
-                                        <a title="Editar" href="{{ route('editarAutor', $p->CodAu) }}" class="mr-3">
+                                        <a title="Editar" href="{{ route('editarLivro', $p->Codl) }}" class="mr-3">
                                             <i class="fa fa-pen"></i>
                                         </a>
 
-                                        <a id="excluir" class="excluir" title="Excluir" href="javascript:void(0)" cod="{{ $p->CodAu }}">
+                                        <a id="excluir" class="excluir" title="Excluir" href="javascript:void(0)" cod="{{ $p->Codl }}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

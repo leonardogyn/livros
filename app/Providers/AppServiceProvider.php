@@ -29,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
         // Livro
         $this->app->bind(\Modules\Livro\Repositories\Interfaces\LivroRepositoryInterface::class, \Modules\Livro\Repositories\LivroRepository::class);
         $this->app->bind(\Modules\Livro\Services\Interfaces\LivroServiceInterface::class, \Modules\Livro\Services\LivroService::class);
+
+        // Relatorio
+        $this->app->bind(\Modules\Relatorio\Repositories\Interfaces\RelatorioRepositoryInterface::class, \Modules\Relatorio\Repositories\RelatorioRepository::class);
+        $this->app->bind(\Modules\Relatorio\Services\Interfaces\RelatorioServiceInterface::class, \Modules\Relatorio\Services\RelatorioService::class);
     }
 
     /**

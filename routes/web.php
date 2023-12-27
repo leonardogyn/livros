@@ -35,4 +35,5 @@ Route::prefix('/livro')->group(function () {
 
 Route::prefix('/relatorio')->group(function () {
     Route::get('/', '\Modules\relatorio\Controllers\RelatorioController@index')->name('indexRelatorio');
+    Route::get('/exportar', '\Modules\relatorio\Controllers\RelatorioController@exportar')->name('exportarRelatorio');
 });

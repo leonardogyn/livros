@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class CreateRelatorioViews extends Migration
 {
@@ -14,11 +12,11 @@ class CreateRelatorioViews extends Migration
      */
     public function up()
     {
-        DB::statement("DROP VIEW IF EXISTS relatorioView");
-        DB::statement("CREATE VIEW relatorioView AS
+        DB::statement("DROP VIEW IF EXISTS relatorioview");
+        DB::statement("CREATE VIEW relatorioview AS
                         SELECT
-                            A.Nome AS autor,
-                            L.Titulo AS livro,
+                            A.Nome AS Autor,
+                            L.Titulo AS Livro,
                             GROUP_CONCAT(DISTINCT S.Descricao ORDER BY S.Descricao ASC) AS Assuntos
                         FROM
                             Autor A
@@ -38,6 +36,6 @@ class CreateRelatorioViews extends Migration
      */
     public function down()
     {
-        DB::statement("DROP VIEW IF EXISTS relatorioView");
+        DB::statement("DROP VIEW IF EXISTS relatorioview");
     }
 }

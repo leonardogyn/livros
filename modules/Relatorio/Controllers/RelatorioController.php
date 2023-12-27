@@ -33,4 +33,18 @@ class RelatorioController extends Controller
         }
     }
 
+    /**
+     * Exportar dos dados para WEB
+     */
+    public function exportar()
+    {
+        try {
+            $relatorios = $this->service->list();
+            return view('relatorio.exportar', compact('relatorios'));
+        } catch (Exception $ex) {
+            report($ex);
+            return response()->json(['message' => 'Falha ao efetuar a exportação do relatório Web'], 500);
+        }
+    }
+
 }

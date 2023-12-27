@@ -9,6 +9,6 @@ class Relatorio extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $table        = 'relatorioView';
+    protected $table        = 'relatorioview';
 
 }

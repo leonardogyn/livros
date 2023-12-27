@@ -17,21 +17,21 @@
     <h1>Relatório de Autores</h1>
 </center>
 
-<table id="table" class="table table-striped">
-    <thead class="thead-light">
-        <tr class="text-secondary">
-            <th class="text-center" scope="col">Autor</th>
-            <th scope="col">Livro</th>
-            <th scope="col">Assuntos</th>
+<table border="1" padding-left="0" margin-left="0" style="width: 100%;">
+    <thead>
+        <tr>
+            <th style="text-align: left;">Autor</th>
+            <th style="text-align: left;">Livro</th>
+            <th style="text-align: left;">Assuntos</th>
         </tr>
     </thead>
 
     <tbody>
-    @foreach ($relAutores as $autor)
+    @foreach ($relatorios as $rel)
         <tr>
-            <td>{{ $autor->Autor }}</td>
-            <td>{{ $autor->Livro }}</td>
-            <td>{{ $autor->Assuntos }}</td>
+            <td>{{ $rel->Autor }}</td>
+            <td>{{ $rel->Livro }}</td>
+            <td>{{ $rel->Assuntos }}</td>
         </tr>
     @endforeach
     </tbody>

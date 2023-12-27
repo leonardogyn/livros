@@ -9,10 +9,10 @@
         <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <h3 class="m-0" style="float:left"><i class="fa fa-fw fa-star"></i> Relatório de Autores</h3>
 
-            <!--a title="Exportar" href="{{ route('exportarRelatorio') }}"  class="btn btn-primary float-right">
+            <a title="Exportar" href="{{ route('exportarRelatorio') }}"  class="btn btn-primary float-right">
                 <i class="fa fa-fw fa-star"></i>
                 Exportar
-            </a-->
+            </a>
         </div>
     </div>
 

@@ -9,6 +9,6 @@ $factory->define(Assunto::class, function (Faker $faker) {
     $max = Assunto::max('CodAs');
     return [
         'CodAs' => $max + 1,
-        'Descricao' => $faker->realText($faker->numberBetween(10, 20)),
+        'Descricao' => $faker->word(),
     ];
 });

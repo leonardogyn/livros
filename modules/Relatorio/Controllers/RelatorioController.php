@@ -3,7 +3,7 @@
 namespace Modules\Relatorio\Controllers;
 
 use App\Http\Controllers\Controller;
-
+use Barryvdh\DomPDF\PDF;
 use Modules\Relatorio\Services\Interfaces\RelatorioServiceInterface;
 use Exception;
 
@@ -40,7 +40,10 @@ class RelatorioController extends Controller
     {
         try {
             $relatorios = $this->service->list();
-            return view('relatorio.exportar', compact('relatorios'));
+            //return view('relatorio.exportar', compact('relatorios'));
+            $pdf = app('dompdf.wrapper');
+            $pdf->loadView('relatorio.exportar', compact('relatorios'));
+            return $pdf->download('relatorio.pdf');
         } catch (Exception $ex) {
             report($ex);
             return response()->json(['message' => 'Falha ao efetuar a exportação do relatório Web'], 500);

@@ -119,6 +119,10 @@ $(function () {
         });
         if (manter != 'Atualizar') {
           $("#Titulo").val("");
+          $("#Editora").val("");
+          $("#Edicao").val("");
+          $("#AnoPublicacao").val("");
+          $("#Valor").val("");
         }
         $(".validarErro").removeClass("is-invalid");
         $(".invalid-feedback").text("");
